@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MultipleImageUpload</title>
+    <style>
+        .d-block {
+            display: block;
+            /*width: 50%;*/
+            margin-top: 50px;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="d-block mx-auto">
+        <div class="wrapper" id="fileInputWrapper">
+            <input type="file" id="fileInput" multiple />
+        </div>
+    </div>
+    <br />
+    <br />
+    <button onclick="mamuShow()">
+        show all files
+    </button>
+
+    <label>choose files below to preview them</label>
+    <br />
+    <input type="file" id="fileInput2" multiple />
+
+    <script src="jquery.min.js"></script>
+    <script src="fileManager2020.js"></script>
+    <script>
+        var _fm2020 = new fM2020("fileInput", {
+            uiMode: "table",
+            //allowedExtensions:['jpg']
+            previewText: "choose the files you mamu !!",
+            //containerBackgroundColor: "black",
+            //fileDialogueTriggerButtonColor: "white",
+            //fileDialogueTriggerButtonTextColor: "green",
+            //contentTextColor: "green",
+            fileDialogueTriggerButtonText: "punch me to select files !! :)"
+        });
+
+        $(document).ready(function () {
+            _fm2020.initialize();
+            $("#fileInput2").change(function () {
+                _fm2020.previewFileObjects($(this).prop("files"));
+            });
+        });
+
+        function mamuShow() {
+            console.log(_fm2020.getAllFiles("base64"));
+        }
+
+    </script>
+</body>
+</html>
